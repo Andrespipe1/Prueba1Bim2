@@ -46,7 +46,7 @@ public class login extends JFrame{
         pstmt.setString(2, passing);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
-            JOptionPane.showMessageDialog(null,"La información ingresada es correcta.");
+            JOptionPane.showMessageDialog(null,"Bienvenid@ "+usering);
             registro vregis= new registro();
             vregis.iniciar();
             dispose();
