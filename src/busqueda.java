@@ -8,6 +8,7 @@ public class busqueda extends JFrame{
     private JButton buscar;
     private JLabel datos;
     private JButton regresarButton;
+    private JButton eliminarButton;
 
     public busqueda() {
         super("Ventana de busqueda");
@@ -30,6 +31,16 @@ public class busqueda extends JFrame{
                 dispose();
             }
         });
+        eliminarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    eliminarDatos();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
     public void iniciar(){
         setVisible(true);
@@ -48,7 +59,7 @@ public class busqueda extends JFrame{
     public void buscarDatos() throws SQLException {
         int cedula = Integer.parseInt(ced.getText());
         Connection connection = conexion();
-        String sql = "Select * from PACIENTE where cedula=?;";
+        String sql = "Select * from PACIENTE where n_historial_clinico=?;";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, cedula);
         ResultSet rs = pstmt.executeQuery();
@@ -67,6 +78,22 @@ public class busqueda extends JFrame{
             JOptionPane.showMessageDialog(null, "No se encontró un registro con ese código");
         }
         rs.close();
+        pstmt.close();
+        connection.close();
+    }
+    public void eliminarDatos() throws SQLException {
+        int cedula = Integer.parseInt(ced.getText());
+        Connection connection = conexion();
+        String sql = "DELETE FROM PACIENTE WHERE n_historial_clinico = ?;";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setInt(1, cedula);
+        int rowsAffected = pstmt.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Paciente eliminado exitosamente");
+            datos.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un registro con ese número de historial clínico");
+        }
         pstmt.close();
         connection.close();
     }
