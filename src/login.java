@@ -36,11 +36,11 @@ public class login extends JFrame{
     public void verificarDatos() throws SQLException {
         String usering= user.getText();
         String passing= pass.getText();
-        String url="jdbc:mysql://localhost:3306/sistema_hospitalario";
-        String user="root";
-        String password="";
+        String url="jdbc:mysql://uj0pr9igtrayt0qu:YYEBmH4R9HjmAoJKiKcp@br912c5ufqtvi0nw6l8b-mysql.services.clever-cloud.com:3306/br912c5ufqtvi0nw6l8b";
+        String user="uj0pr9igtrayt0qu";
+        String password="YYEBmH4R9HjmAoJKiKcp";
         Connection connection = DriverManager.getConnection(url, user, password);
-        String sql = "SELECT * FROM USUARIO WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM acceso WHERE usuario = ? AND password = ?";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, usering);
         pstmt.setString(2, passing);

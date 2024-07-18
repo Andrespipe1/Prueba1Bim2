@@ -46,9 +46,9 @@ public class registro extends JFrame{
 
     }
     public Connection conexion() throws SQLException {
-        String url="jdbc:mysql://localhost:3306/sistema_hospitalario";
-        String user="root";
-        String password="";
+        String url="jdbc:mysql://uceiprz5lnyxwcun:2MEuIBNxrt0DUkvVbQaE@bi7ej80dgemnxzfdcj4h-mysql.services.clever-cloud.com:3306/bi7ej80dgemnxzfdcj4h";
+        String user="uceiprz5lnyxwcun";
+        String password="2MEuIBNxrt0DUkvVbQaE";
         return DriverManager.getConnection(url,user,password);
     }
     public void ingresarDatos() throws SQLException {

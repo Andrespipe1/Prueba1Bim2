@@ -9,6 +9,7 @@ public class busqueda extends JFrame{
     private JLabel datos;
     private JButton regresarButton;
     private JButton eliminarButton;
+    private JButton modificarButton;
 
     public busqueda() {
         super("Ventana de busqueda");
@@ -39,6 +40,12 @@ public class busqueda extends JFrame{
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+        modificarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
